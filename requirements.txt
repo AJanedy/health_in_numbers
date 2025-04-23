@@ -5,4 +5,4 @@ numpy
 jupyter
 streamlit
 folium
-sklearn
+scikit-learn
