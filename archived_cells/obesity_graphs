@@ -1,0 +1,29 @@
+
+
+# Create folder if it doesn't exist
+output_folder = 'state_obesity_graphs'
+os.makedirs(output_folder, exist_ok=True)
+
+# Find the global min and max values for the y-axis
+global_min = obesity_data.min().min()  # Minimum value across all states
+global_max = obesity_data.max().max()  # Maximum value across all states
+
+# Loop through each state and create a graph on state data
+for state in obesity_data.index:
+    plt.figure(figsize=(10, 9)) 
+    plt.plot(obesity_data.columns, obesity_data.loc[state], label=state)
+    
+    plt.xlabel('Year', fontsize=20)
+    plt.ylabel('Total - Percentage', fontsize=20)
+    plt.title(f'Obesity Total - Percentage in {state} 2000 - 2022', fontsize=20)
+    
+    plt.xticks(rotation=45, fontsize=16)
+    plt.ylim(global_min, global_max)
+    plt.yticks(fontsize=16)
+    
+    output_path = os.path.join(output_folder, f'{state.replace(' ', '_')}_obesity_graph.png')
+    plt.savefig(output_path)
+    plt.close()
+
+print(f'Graphs have been saved to the folder: {output_folder}')
+

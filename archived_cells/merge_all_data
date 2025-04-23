@@ -1,0 +1,14 @@
+
+
+# Ensure matching data types for merge keys
+obes_diab_pove_data['State'] = obes_diab_pove_data['State'].astype(str)
+obes_diab_pove_data['Year'] = obes_diab_pove_data['Year'].astype(int)
+
+food_security_data['State'] = food_security_data['State'].astype(str)
+food_security_data['Year'] = food_security_data['Year'].astype(int)
+
+# Merge the DataFrames on 'State' and 'Year'
+merged_df = food_security_data.merge(obes_diab_pove_data, on=['State', 'Year'], how='left')
+
+merged_df.head()
+

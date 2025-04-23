@@ -1,0 +1,38 @@
+
+# Create a folder if it doesnt exist
+output_folder = 'state_poverty_graphs'
+os.makedirs(output_folder, exist_ok=True)
+
+# Find the global min and max values for the y-axis
+global_min = poverty_data.min().min()  # Minimum value across all states
+global_max = poverty_data.max().max()  # Maximum value across all states
+
+# x-axis labels
+year_labels = [2000, 2005, 2010, 2015, 2020]
+
+# Loop through each state and generate its own graph
+for state in poverty_data.index:
+    plt.figure(figsize=(10, 9))  # Set a size for the individual plot
+    plt.plot(poverty_data.columns, poverty_data.loc[state], label=state)
+    
+
+    plt.xlabel('Year', fontsize=20)
+    plt.ylabel('Total - Percentage', fontsize=20)
+    plt.title(f'Poverty Total - Percentage in {state} 2000 - 2022', fontsize=20)
+    
+    # Set the positions for the x-ticks corresponding to the selected years
+    x_positions = [poverty_data.columns.get_loc(str(year)) for year in year_labels if str(year) in poverty_data.columns]
+    
+    plt.xticks(x_positions, year_labels, rotation=45, fontsize=16)
+    plt.yticks(fontsize=16)
+    plt.ylim(global_min, global_max)
+    
+    # Adjust layout to prevent cutting off labels
+    plt.tight_layout()  # Automatically adjusts subplot parameters to fit labels
+    
+    output_path = os.path.join(output_folder, f'{state.replace(" ", "_")}_poverty_graph.png')
+    plt.savefig(output_path)
+    plt.close()
+
+print(f'Graphs have been saved to the folder: {output_folder}')
+

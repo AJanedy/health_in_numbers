@@ -1,0 +1,14 @@
+
+
+food_security_data = food_security_data.dropna(subset=['State Abbreviation'])
+len(food_security_data)
+
+food_security_data['State Abbreviation'] = (
+    food_security_data['State Abbreviation']
+    .astype(str)
+    .str.replace('.0', '', regex=False)
+    .astype(int)
+)
+
+print(food_security_data['State Abbreviation'].unique())
+

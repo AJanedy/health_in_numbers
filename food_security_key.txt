@@ -1,0 +1,21 @@
+
+Standard Key:
+     -2 - Don't Know
+     -3 - Refused
+     -9 - No Response
+
+
+Food Needs Met: Does interviewee need more money to buy food?: 1 - Yes, 2 - No & standard key
+
+SNAP Benefits: Has interviewee or a household member recieved snap benefits?: 1 - Yes, 2 - No & standard key
+
+Have Desirable Food: Do you often have enough desireable food in the house?: 1 - Always, 2 - Often, 3 - Sometimes, 4 - Rarely & standard key
+
+Food Pantry: Received food from food pantry: 1 - Yes, 2 - No & standard key
+    
+Soup Kitchen/Shelter: Received meals from soup kitchen or shelter: 1 - Yes, 2 - No & standard key
+    
+Food Security Status:  Self declared food security: Very Low (4) - High (1)
+
+
+

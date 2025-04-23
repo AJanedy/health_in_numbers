@@ -1,0 +1,20 @@
+
+
+# Merge diabetes, poverty, and obesity data into a singular data frame
+
+# Convert from wide to long format using melt()
+obesity_long_format = obesity_data.reset_index().melt(id_vars='State', var_name='Year', value_name='Obesity_Percentage')
+diabetes_long_format = diabetes_data.reset_index().melt(id_vars='State', var_name='Year', value_name='Diabetes_Percentage')
+poverty_long_format = poverty_data.reset_index().melt(id_vars='State', var_name='Year', value_name='Poverty_Percentage')
+
+# Ensure Year is numeric (some CSVs treat it as string)
+obesity_long_format['Year'] = obesity_long_format['Year'].astype(int)
+diabetes_long_format['Year'] = diabetes_long_format['Year'].astype(int)
+poverty_long_format['Year'] = diabetes_long_format['Year'].astype(int)
+
+# Merge obesity_data and diabetes_data on State and Year
+obesity_diabetes_data = pd.merge(obesity_long_format, diabetes_long_format, on=['State', 'Year'])
+
+# Merge obesity_diabetes_data and poverty_data on State and Year
+obes_diab_pove_data = pd.merge(obesity_diabetes_data, poverty_long_format, on=['State', 'Year'])
+

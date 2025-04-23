@@ -1,0 +1,33 @@
+
+
+# Create folder if it doesn't exist
+output_folder = "state_diabetes_graphs"
+os.makedirs(output_folder, exist_ok=True)
+
+# Find the global min and max values for the y-axis (diabetes data)
+global_min = diabetes_data.min().min()  # Minimum value across all states
+global_max = diabetes_data.max().max()  # Maximum value across all states
+
+# Loop through each state and create a graph on state data
+for state in diabetes_data.index:
+    plt.figure(figsize=(10, 9))
+    plt.plot(diabetes_data.columns, diabetes_data.loc[state], marker='o', linestyle='-')
+    
+    
+    plt.xlabel('Year', fontsize=20)
+    plt.ylabel('Total - Percentage', fontsize=20)
+    plt.title(f'Diabetes Total - Percentage in {state} (2000 - 2022)', fontsize=20)
+
+    plt.xticks(rotation=45, fontsize=16)
+    plt.ylim(global_min, global_max)
+    plt.yticks(fontsize=16)
+    
+    plt.tight_layout()
+    
+    # Save each plot as a PNG file
+    output_path = os.path.join(output_folder, f"{state.replace(' ', '_')}_diabetes_graph.png")
+    plt.savefig(output_path)
+    plt.close()
+
+print(f'Graphs have been saved to the folder: {output_folder}')
+

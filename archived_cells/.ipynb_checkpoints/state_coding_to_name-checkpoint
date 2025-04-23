@@ -1,0 +1,6 @@
+
+
+from config import state_abbrev_to_name
+
+food_security_data['State'] = food_security_data['State Abbreviation'].map(state_abbrev_to_name)
+
