@@ -14,10 +14,10 @@ def get_notebook():
 
 def get_data_frames(ntbk):
     diabetes_data, obesity_data, poverty_data, food_security_data = [
-        pd.read_parquet("data_frames/diabetes_data.parquet"),
-        pd.read_parquet("data_frames/obesity_data.parquet"),
-        pd.read_parquet("data_frames/poverty_data.parquet"),
-        pd.read_parquet("data_frames/food_security_data.parquet"),
+        pd.read_parquet("../data_frames/diabetes_data.parquet"),
+        pd.read_parquet("../data_frames/obesity_data.parquet"),
+        pd.read_parquet("../data_frames/poverty_data.parquet"),
+        pd.read_parquet("../data_frames/food_security_data.parquet"),
     ]
     return diabetes_data, obesity_data, poverty_data, food_security_data
 
@@ -43,7 +43,7 @@ def config_page_and_title():
 
 def readme_expander():
     with st.expander("README"):
-        with open("README.md", "r") as file:
+        with open("../README.md", "r") as file:
             readme_contents = file.read()
         st.markdown(readme_contents)
 
