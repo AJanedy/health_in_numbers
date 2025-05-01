@@ -67,41 +67,31 @@ def display_map():
         with open("state_map.html", "r", encoding="utf-8") as f:
             folium_html = f.read()
         st.components.v1.html(folium_html, height=1000, scrolling=True)
-    # with st.expander("🗺️ Interactive Map"):
-    #     with open("state_map.html", "r", encoding="utf-8") as f:
-    #         folium_html = f.read()
-    #     st.components.v1.html(folium_html, height=700, scrolling=True)
 
 
-def exploratory_expander(ntbk):
-    for cell in ntbk["cells"]:
-        if cell["cell_type"] == "code":
-            source = cell["source"]
-            if source and source[0].strip() == "# INCLUDE":
-                title = source[1].strip("# ")
-                code_to_run = "".join(source[2:])
+def display_linear_regression_graph():
+    with st.expander("Linear Regression Relationship between Poverty and Diabetes Percentage"):
+        st.image("../trained_data_graphs/diabetes_poverty_relationship.png", use_container_width=True)
 
-                # Execute code and capture output
-                fig = None
-                buffer = io.StringIO()
 
-                with redirect_stdout(buffer):
-                    try:
-                        exec(code_to_run, globals())
+def display_lasso_regression_graph():
+    with st.expander("Lasso Regression between Poverty and Diabetes Percentage"):
+        st.image("../trained_data_graphs/lasso_regression_obesity_vs_diabetes.png", use_container_width=True)
 
-                        # Try to find the matplotlib figure
-                        fig = plt.gcf()
-                    except Exception as e:
-                        st.error(f"Error running code for '{title}': {e}")
-                        continue
 
-                with st.expander(title):
-                    if fig:
-                        st.pyplot(fig)
-                        plt.clf()  # Clear after rendering
-                    output = buffer.getvalue()
-                    if output.strip():
-                        st.code(output, language='text')
+def display_random_forest_pred():
+    with st.expander("Random Forest Obesity Prediction"):
+        st.image("../trained_data_graphs/random_forest_obesity_prediction.png", use_container_width=True)
+
+
+def display_random_forest_res():
+    with st.expander("Random Forest Obesity Residual"):
+        st.image("../trained_data_graphs/random_forest_obesity_residual.png", use_container_width=True)
+
+
+def display_poverty_obesity_growth():
+    with st.expander("Obesity/Diabetes Growth with Linear Regression"):
+        st.image("../trained_data_graphs/diabetes_growth_vs_obesity_growth.png", use_container_width=True)
 
 
 if __name__ == "__main__":
@@ -110,5 +100,9 @@ if __name__ == "__main__":
     diabetes_data, obesity_data, poverty_data, food_security_data = get_data_frames(notebook)
     readme_expander()
     display_map()
-    # exploratory_expander(notebook)
+    display_linear_regression_graph()
+    display_lasso_regression_graph()
+    display_random_forest_pred()
+    display_random_forest_res()
+    display_poverty_obesity_growth()
 
