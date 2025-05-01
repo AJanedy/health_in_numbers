@@ -105,3 +105,9 @@ state_abbrev_to_name = {
     56: 'Wyoming', 
     11: 'District of Columbia'
 }
+obesity_costs = {
+    2000: 147,
+    2005: 190,
+    2012: 210,
+    2016: 260
+}
